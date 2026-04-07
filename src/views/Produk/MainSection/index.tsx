@@ -1,38 +1,35 @@
 import Link from "next/link";
 import styles from "./MainSection.module.scss";
+import { useEffect, useState } from "react";
 
-const products = [
-  {
-    id: 1,
-    name: "Laptop Gaming",
-    price: "Rp 15.000.000",
-    category: "Elektronik",
-  },
-  { id: 2, name: "Smartphone", price: "Rp 5.000.000", category: "Elektronik" },
-  {
-    id: 3,
-    name: "Headphone Wireless",
-    price: "Rp 1.500.000",
-    category: "Audio",
-  },
-  {
-    id: 4,
-    name: "Keyboard Mechanical",
-    price: "Rp 1.200.000",
-    category: "Aksesoris",
-  },
-  { id: 5, name: "Mouse Gaming", price: "Rp 800.000", category: "Aksesoris" },
-  { id: 6, name: "Monitor 4K", price: "Rp 6.500.000", category: "Elektronik" },
-];
+type product = {
+  id: number;
+  name: string;
+  price: number;
+  category: string;
+  ukuran: string;
+  warna: string;
+};
 
 export default function MainSection() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    fetch("/api/produk")
+      .then((response) => response.json())
+      .then((responsedata) => {
+        setProducts(responsedata.data);
+      })
+      .catch((error) => console.error("Error fetching products:", error));
+  }, []);
+
   return (
     <section className={styles.mainSection}>
       <div className={styles.container}>
-        <h2 className={styles.sectionTitle}>Produk Terpopuler</h2>
+        <h2 className={styles.sectionTitle}>Daftar Produk</h2>
 
         <div className={styles.productGrid}>
-          {products.map((product) => (
+          {products.map((product: product) => (
             <Link
               key={product.id}
               href={`/produk/${product.id}`}
@@ -46,7 +43,10 @@ export default function MainSection() {
                   {product.category}
                 </span>
                 <h3 className={styles.productName}>{product.name}</h3>
-                <p className={styles.productPrice}>{product.price}</p>
+                <p className={styles.productDescription}>
+                  Ukuran: {product.ukuran} | Warna: {product.warna}
+                </p>
+                <p className={styles.productPrice}>Rp.{product.price.toLocaleString("id-ID")}</p>
                 <button className={styles.productButton}>Lihat Detail</button>
               </div>
             </Link>
