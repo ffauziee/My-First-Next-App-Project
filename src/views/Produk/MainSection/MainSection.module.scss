@@ -1,0 +1,110 @@
+@use "@/styles/colors.scss" as colors;
+@use "sass:map";
+
+.mainSection {
+  padding: 4rem 2rem;
+  background-color: #f8f9fa;
+  min-height: 500px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: map.get(colors.$schema, color-text);
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.productCard {
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.productImage {
+  height: 200px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.productEmoji {
+  font-size: 4rem;
+}
+
+.productInfo {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.productCategory {
+  font-size: 0.875rem;
+  color: map.get(colors.$schema, color-primary);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.productName {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: map.get(colors.$schema, color-text);
+  margin: 0;
+}
+
+.productPrice {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: map.get(colors.$schema, color-secondary);
+  margin: 0;
+}
+
+.productButton {
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+  background-color: map.get(colors.$schema, color-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: darken(#3498db, 10%);
+  }
+}

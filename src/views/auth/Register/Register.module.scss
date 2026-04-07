@@ -1,0 +1,115 @@
+@use "@/styles/colors.scss" as colors;
+@use "sass:map";
+
+.register {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 120px);
+  background-color: map.get(colors.$schema, color-background);
+  padding: 2rem 1rem;
+
+  h1 {
+    margin-bottom: 2rem;
+    color: map.get(colors.$schema, color-text);
+    font-size: 2rem;
+    font-weight: bold;
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background-color: #ffffff;
+  min-width: 400px;
+  max-width: 500px;
+  width: 100%;
+
+  @media (max-width: 640px) {
+    min-width: 300px;
+    padding: 2rem;
+  }
+}
+
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  label {
+    font-weight: 600;
+    color: map.get(colors.$schema, color-text);
+    font-size: 0.95rem;
+  }
+
+  input {
+    padding: 0.75rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+
+    &:focus {
+      outline: none;
+      border-color: map.get(colors.$schema, color-primary);
+      box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+    }
+
+    &::placeholder {
+      color: #999;
+    }
+  }
+}
+
+.btnRegister {
+  margin-top: 0.5rem;
+  padding: 0.875rem;
+  background-color: map.get(colors.$schema, color-secondary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: darken(#2ecc71, 10%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(46, 204, 113, 0.3);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.loginLink {
+  margin-top: 1.5rem;
+  color: map.get(colors.$schema, color-text);
+  font-size: 0.95rem;
+
+  a {
+    color: map.get(colors.$schema, color-primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: darken(#3498db, 15%);
+      text-decoration: underline;
+    }
+  }
+}

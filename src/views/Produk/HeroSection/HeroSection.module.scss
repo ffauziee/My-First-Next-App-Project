@@ -1,0 +1,103 @@
+@use "@/styles/colors.scss" as colors;
+@use "sass:map";
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(
+    135deg,
+    map.get(colors.$schema, color-primary) 0%,
+    map.get(colors.$schema, color-secondary) 100%
+  );
+  color: white;
+  gap: 3rem;
+  min-height: 400px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 3rem 1.5rem;
+    text-align: center;
+  }
+}
+
+.heroContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.heroTitle {
+  font-size: 3rem;
+  font-weight: bold;
+  line-height: 1.2;
+  margin: 0;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+}
+
+.heroSubtitle {
+  font-size: 1.25rem;
+  opacity: 0.95;
+  line-height: 1.6;
+
+  @media (max-width: 768px) {
+    font-size: 1.1rem;
+  }
+}
+
+.heroButton {
+  padding: 1rem 2rem;
+  background-color: white;
+  color: map.get(colors.$schema, color-primary);
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  align-self: flex-start;
+
+  @media (max-width: 768px) {
+    align-self: center;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  &:active {
+    transform: translateY(-1px);
+  }
+}
+
+.heroImage {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imagePlaceholder {
+  font-size: 10rem;
+  animation: float 3s ease-in-out infinite;
+
+  @media (max-width: 768px) {
+    font-size: 6rem;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
