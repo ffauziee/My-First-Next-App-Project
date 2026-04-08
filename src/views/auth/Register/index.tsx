@@ -13,7 +13,7 @@ export default function TampilanRegister() {
 
   return (
     <div className={styles.register}>
-      <h1 className="text-4xl font-bold text-gray-800 mb-6">Halaman Register</h1>
+      <h1 className="mb-6 text-4xl font-bold text-gray-800">Halaman Register</h1>
       <div className={styles.card}>
         <form onSubmit={handleRegister} className={styles.form}>
           <div className={styles.formGroup}>
@@ -25,7 +25,7 @@ export default function TampilanRegister() {
               id="name"
               name="name"
               placeholder="Masukkan nama lengkap"
-              className="focus:ring-2 focus:ring-blue-400 transition-all duration-200"
+              className="transition-all duration-200 focus:ring-2 focus:ring-blue-400"
               required
             />
           </div>
@@ -39,7 +39,7 @@ export default function TampilanRegister() {
               id="email"
               name="email"
               placeholder="Masukkan email"
-              className="focus:ring-2 focus:ring-blue-400 transition-all duration-200"
+              className="transition-all duration-200 focus:ring-2 focus:ring-blue-400"
               required
             />
           </div>
@@ -53,7 +53,7 @@ export default function TampilanRegister() {
               id="password"
               name="password"
               placeholder="Masukkan password"
-              className="focus:ring-2 focus:ring-blue-400 transition-all duration-200"
+              className="transition-all duration-200 focus:ring-2 focus:ring-blue-400"
               required
             />
           </div>
@@ -67,14 +67,14 @@ export default function TampilanRegister() {
               id="confirmPassword"
               name="confirmPassword"
               placeholder="Konfirmasi password"
-              className="focus:ring-2 focus:ring-blue-400 transition-all duration-200"
+              className="transition-all duration-200 focus:ring-2 focus:ring-blue-400"
               required
             />
           </div>
           
           <button 
             type="submit" 
-            className="mt-4 w-full py-3 px-6 bg-gradient-to-r from-green-500 to-green-700 text-white font-bold rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
+            className="w-full px-6 py-3 mt-4 font-bold text-white transition-all duration-300 transform rounded-lg shadow-md bg-gradient-to-r from-green-500 to-green-700 hover:shadow-xl hover:-translate-y-1"
           >
             Daftar
           </button>
@@ -84,7 +84,7 @@ export default function TampilanRegister() {
           Sudah punya akun?{" "}
           <Link 
             href="/auth/login"
-            className="text-blue-600 font-semibold hover:text-blue-800 hover:underline transition-colors duration-200"
+            className="font-semibold text-blue-600 transition-colors duration-200 hover:text-blue-800 hover:underline"
           >
             Login di sini
           </Link>

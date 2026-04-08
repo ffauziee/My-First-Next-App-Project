@@ -10,11 +10,33 @@ export default function TampilanLogin() {
 
   return (
     <div className={styles.login}>
-      <h1 className="text-4xl font-bold text-blue-600 mb-6">Halaman Login</h1>
+      <h1 className="mb-6 text-4xl font-bold text-blue-600">Halaman Login</h1>
       <div className={styles.card}>
+        <div className={styles.form}>
+          <div className={styles.formGroup}>
+            <label htmlFor="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              placeholder="Masukkan username"
+              className="transition-all duration-200 focus:ring-2 focus:ring-blue-400"
+              required
+            />
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Masukkan password"
+              className="transition-all duration-200 focus:ring-2 focus:ring-blue-400"
+              required
+            />
+          </div>
+        </div>
         <button
           onClick={() => handlerLogin()}
-          className="w-full py-3 px-6 bg-gradient-to-r from-blue-500 to-blue-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
+          className="w-full px-6 py-3 font-semibold text-white transition-all duration-300 transform rounded-lg shadow-lg bg-gradient-to-r from-blue-500 to-blue-700 hover:shadow-xl hover:-translate-y-1"
         >
           Login
         </button>
@@ -23,7 +45,7 @@ export default function TampilanLogin() {
 
         <Link
           href="/auth/register"
-          className="inline-block mt-2 text-blue-600 font-medium hover:text-blue-800 hover:underline transition-colors duration-200"
+          className="inline-block mt-2 font-medium text-blue-600 transition-colors duration-200 hover:text-blue-800 hover:underline"
         >
           Ke halaman register
         </Link>
