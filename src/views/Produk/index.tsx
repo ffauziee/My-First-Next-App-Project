@@ -1,11 +1,19 @@
 import HeroSection from "./HeroSection";
 import MainSection from "./MainSection";
 
-export default function TampilanProduk() {
+type ProductType = {
+  id: string;
+  name: string;
+  image: string;
+  category: string;
+  price: number;
+};
+
+export default function TampilanProduk({ products }: { products: ProductType[] }) {
   return (
     <div>
       <HeroSection />
-      <MainSection />
+      <MainSection products={products} />
     </div>
   );
 }

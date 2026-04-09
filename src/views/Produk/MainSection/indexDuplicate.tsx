@@ -15,7 +15,6 @@ type product = {
 export default function MainSection() {
   const [isLogin, setIsLogin] = useState(false);
   const {push} = useRouter();
-  
   const [products, setProducts] = useState<product[]>([]);
   const [loading, setLoading] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("All Products");
