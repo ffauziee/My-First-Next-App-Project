@@ -4,15 +4,15 @@ import { useEffect, useState } from "react";
 import { MdRefresh, MdHourglassEmpty } from "react-icons/md";
 
 type product = {
-  id: number;
+  id: string;
   name: string;
+  image: string;
   category: string;
   price: number;
-  size: string;
 };
 
 export default function MainSection() {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<product[]>([]);
   const [loading, setLoading] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("All Products");
   const [sortBy, setSortBy] = useState("default");
@@ -29,10 +29,33 @@ export default function MainSection() {
   };
 
   useEffect(() => {
-    fetchProducts();
+    let isMounted = true;
+
+    const loadProducts = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch("/api/produk");
+        const responsedata = await response.json();
+        if (isMounted) {
+          setProducts(responsedata.data);
+        }
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      } finally {
+        if (isMounted) {
+          setLoading(false);
+        }
+      }
+    };
+
+    loadProducts();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
-  // Dapatkan kategori unik dari produk
+  // get kategori dari produk
   const getUniqueCategories = () => {
     const categories = ["All Products"];
     products.forEach((product) => {
@@ -43,7 +66,7 @@ export default function MainSection() {
     return categories;
   };
 
-  // Filter produk berdasarkan kategori yang dipilih
+  // Filter produk berdasarkan kategori
   const filteredProducts =
     selectedCategory === "All Products"
       ? products
@@ -113,7 +136,7 @@ export default function MainSection() {
           {sortedProducts.map((product: product) => (
             <div key={product.id} className={styles.productCard}>
               <div className={styles.productImage}>
-                <span className={styles.productEmoji}>📦</span>
+                <img src={product.image} alt={product.name} />
                 <button className={styles.addToCartBadge}>✓ Add to Cart</button>
               </div>
               <div className={styles.productInfo}>
@@ -124,10 +147,10 @@ export default function MainSection() {
                   <h3 className={styles.productName}>{product.name}</h3>
                 </Link>
                 <p className={styles.productDescription}>
-                  Size: {product.size}
+                  {/* Size: {product.size} */}
                 </p>
                 <p className={styles.productPrice}>
-                  €{(product.price / 1000).toFixed(2)}
+                  Rp. {product.price.toLocaleString("id-ID")}
                 </p>
               </div>
             </div>

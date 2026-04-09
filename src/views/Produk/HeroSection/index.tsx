@@ -5,7 +5,7 @@ export default function HeroSection() {
     <section className={styles.hero}>
       <div className={styles.heroContent}>
         <h1 className={styles.heroTitle}>
-          Katalog Product
+          Katalog Products
         </h1>
         <p className={styles.heroSubtitle}>
           JobSheet Pemrograman Framework - Next.js Routing

@@ -1,4 +1,4 @@
-import style from "@/pages/components/layout/navbar/navbar.module.css";
+import style from "@/pages/components/layout/footer/footer.module.css";
 
 export default function Footer() {
   return (
@@ -7,4 +7,3 @@ export default function Footer() {
     </div>
   );
 }
- 
