@@ -1,24 +1,22 @@
 import TampilanProduk from "@/views/Produk";
-import fetcher from "../../utils/swr/fetcher";
-import useSWR from "swr";
 import { ProductType } from "../../types/Product.type";
 
-export default function halamanProdukServer(prop: { products: ProductType[] }) {
+export default function halamanProdukStatic(prop: { products: ProductType[] }) {
   const { products } = prop;
 
   return (
     <div style={{ backgroundColor: "#f9f9f9" }}>
       <h1 className="mt-8 text-3xl font-bold text-center text-green-500">
-        Halaman Produk Server
+        Halaman Produk Static
       </h1>
       <TampilanProduk products={products} />
     </div>
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const res = await fetch("http://localhost:3000/api/produk");
-  const response = await res.json();
+  const response: { data: ProductType[] } = await res.json();
 
   return {
     props: {

@@ -1,7 +1,9 @@
+/* eslint-disable @next/next/no-img-element */
 import styles from "./Produk.module.scss";
 import useSWR from "swr";
-import fetcher from "@/pages/utils/swr/fetcher";
+import fetcher from "@/utils/swr/fetcher";
 import { useState } from "react";
+import Link from "next/link";
 
 type product = {
   id: string;
@@ -18,19 +20,19 @@ type ApiResponse = {
 };
 
 export default function TampilanProduk({ products }: { products: product[] }) {
-  const { mutate, error, isLoading } = useSWR<ApiResponse>(
-    "/api/produk",
-    fetcher,
-  );
+  const { mutate, error } = useSWR<ApiResponse>("/api/produk", fetcher);
   const [selectedCategory, setSelectedCategory] = useState("All Products");
   const [sortBy, setSortBy] = useState("default");
+  const [isLoading, setIsLoading] = useState(false);
 
   if (error) {
     return <div>Error loading products</div>;
   }
 
-  const handleRefresh = () => {
+  const handleRefresh = async () => {
+    setIsLoading(true);
     mutate(undefined, true);
+    setIsLoading(false);
   };
 
   const getUniqueCategories = () => {
@@ -91,7 +93,6 @@ export default function TampilanProduk({ products }: { products: product[] }) {
             </div>
             <button
               onClick={handleRefresh}
-              disabled={isLoading}
               className={`${styles.refreshButton} ${isLoading ? styles.rotating : ""}`}
               title="Refresh Data"
             >
@@ -105,26 +106,32 @@ export default function TampilanProduk({ products }: { products: product[] }) {
           </div>
         </div>
         <div className={styles.produk}>
-          {!isLoading && products.length > 0 ? (
+          {products.length > 0 ? (
             <div className={styles.produk_content}>
               {sortedProducts.map((product) => (
-                <div key={product.id} className={styles.produk_content_item}>
-                  <img
-                    className={styles.produk_content_item_image}
-                    src={product.image}
-                    alt={product.name}
-                    width={200}
-                  />
-                  <h2 className={styles.produk_content_item_name}>
-                    {product.name}
-                  </h2>
-                  <p className={styles.produk_content_item_category}>
-                    {product.category}
-                  </p>
-                  <p className={styles.produk_content_item_price}>
-                    Rp.{product.price.toLocaleString()}
-                  </p>
-                </div>
+                <Link
+                  href={`/produk/${product.id}`}
+                  key={product.id}
+                  className={styles.produk_content_item_link}
+                >
+                  <div key={product.id} className={styles.produk_content_item}>
+                    <img
+                      className={styles.produk_content_item_image}
+                      src={product.image}
+                      alt={product.name}
+                      width={200}
+                    />
+                    <h2 className={styles.produk_content_item_name}>
+                      {product.name}
+                    </h2>
+                    <p className={styles.produk_content_item_category}>
+                      {product.category}
+                    </p>
+                    <p className={styles.produk_content_item_price}>
+                      Rp.{product.price.toLocaleString()}
+                    </p>
+                  </div>
+                </Link>
               ))}
             </div>
           ) : (
