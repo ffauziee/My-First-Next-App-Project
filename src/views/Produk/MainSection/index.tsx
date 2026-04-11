@@ -107,43 +107,55 @@ export default function TampilanProduk({ products }: { products: product[] }) {
         </div>
         <div className={styles.produk}>
           {products.length > 0 ? (
-            <div className={styles.produk_content}>
+            <div className={styles.produk_grid}>
               {sortedProducts.map((product) => (
-                <Link
-                  href={`/produk/${product.id}`}
+                <div
                   key={product.id}
-                  className={styles.produk_content_item_link}
+                  className={styles.produk_grid_item_produkContainer}
                 >
-                  <div key={product.id} className={styles.produk_content_item}>
-                    <img
-                      className={styles.produk_content_item_image}
-                      src={product.image}
-                      alt={product.name}
-                      width={200}
-                    />
-                    <h2 className={styles.produk_content_item_name}>
-                      {product.name}
-                    </h2>
-                    <p className={styles.produk_content_item_category}>
+                  <div key={product.id} className={styles.produk_grid_item}>
+                    <div className={styles.produk_grid_item_image}>
+                      <img
+                        className={styles.produk_grid_item_image}
+                        src={product.image}
+                        alt={product.name}
+                        width={200}
+                      />
+                      <button
+                        className={`${styles.produk_grid_item_addToCart} text-sm`}
+                      >
+                        <img
+                          width="20"
+                          height="20"
+                          src="https://img.icons8.com/material-rounded/24/40C057/shopping-cart.png"
+                          alt="cart-icon"
+                        />
+                        Add to Cart
+                      </button>
+                    </div>
+                    <Link href={`/produk/${product.id}`}>
+                      <h2 className={styles.produk_grid_item_name}>
+                        {product.name}
+                      </h2>
+                    </Link>
+                    <p className={styles.produk_grid_item_category}>
                       {product.category}
                     </p>
-                    <p className={styles.produk_content_item_price}>
+                    <p className={styles.produk_grid_item_price}>
                       Rp.{product.price.toLocaleString()}
                     </p>
                   </div>
-                </Link>
+                </div>
               ))}
             </div>
           ) : (
-            <div className={styles.produk_content}>
+            <div className={styles.produk_grid}>
               {[1, 2, 3, 4, 5].map((i) => (
-                <div key={i} className={styles.produk_content_skeleton}>
-                  <div className={styles.produk_content_skeleton_image}></div>
-                  <div className={styles.produk_content_skeleton_name}></div>
-                  <div
-                    className={styles.produk_content_skeleton_category}
-                  ></div>
-                  <div className={styles.produk_content_skeleton_price}></div>
+                <div key={i} className={styles.produk_grid_skeleton}>
+                  <div className={styles.produk_grid_skeleton_image}></div>
+                  <div className={styles.produk_grid_skeleton_name}></div>
+                  <div className={styles.produk_grid_skeleton_category}></div>
+                  <div className={styles.produk_grid_skeleton_price}></div>
                 </div>
               ))}
             </div>

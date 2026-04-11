@@ -1,7 +1,5 @@
-import TampilanProduk from "@/views/Produk";
-import fetcher from "../../utils/swr/fetcher";
-import useSWR from "swr";
-import { ProductType } from "../../types/Product.type";
+import TampilanProduk from "@/views/Produk"; "swr";
+import { ProductType } from "@/types/Product.type";
 
 export default function halamanProdukServer(prop: { products: ProductType[] }) {
   const { products } = prop;

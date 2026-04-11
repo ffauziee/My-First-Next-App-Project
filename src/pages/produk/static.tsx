@@ -1,5 +1,5 @@
 import TampilanProduk from "@/views/Produk";
-import { ProductType } from "../../types/Product.type";
+import { ProductType } from "@/types/Product.type";
 
 export default function halamanProdukStatic(prop: { products: ProductType[] }) {
   const { products } = prop;
