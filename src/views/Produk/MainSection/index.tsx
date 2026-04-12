@@ -3,23 +3,16 @@ import styles from "./Produk.module.scss";
 import useSWR from "swr";
 import fetcher from "@/utils/swr/fetcher";
 import { useState } from "react";
+import { ProductType } from "@/types/Product.type";
 import Link from "next/link";
-
-type product = {
-  id: string;
-  name: string;
-  image: string;
-  category: string;
-  price: number;
-};
 
 type ApiResponse = {
   status: boolean;
   status_code: number;
-  data: product[];
+  data: ProductType[];
 };
 
-export default function TampilanProduk({ products }: { products: product[] }) {
+export default function TampilanProduk({ products }: { products: ProductType[] }) {
   const { mutate, error } = useSWR<ApiResponse>("/api/produk", fetcher);
   const [selectedCategory, setSelectedCategory] = useState("All Products");
   const [sortBy, setSortBy] = useState("default");
@@ -133,7 +126,7 @@ export default function TampilanProduk({ products }: { products: product[] }) {
                         Add to Cart
                       </button>
                     </div>
-                    <Link href={`/produk/${product.id}`}>
+                    <Link href={`/products/${product.id}`}>
                       <h2 className={styles.produk_grid_item_name}>
                         {product.name}
                       </h2>
