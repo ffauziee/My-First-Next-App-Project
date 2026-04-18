@@ -1,9 +1,9 @@
 import TampilanProduk from "@/views/Produk";
 import { ProductType } from "@/types/Product.type";
+import { revalidateEvents } from "swr/_internal";
 
 export default function halamanProdukStatic(prop: { products: ProductType[] }) {
   const { products } = prop;
-
   return (
     <div style={{ backgroundColor: "#f9f9f9" }}>
       <h1 className="mt-8 text-3xl font-bold text-center text-green-500">
@@ -15,12 +15,22 @@ export default function halamanProdukStatic(prop: { products: ProductType[] }) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch("http://localhost:3000/api/produk");
-  const response: { data: ProductType[] } = await res.json();
+  try {
+    const res = await fetch("http://localhost:3000/api/produk");
+    const response: { data: ProductType[] } = await res.json();
 
-  return {
-    props: {
-      products: response.data,
-    },
-  };
+    return {
+      props: {
+        products: response.data,
+      },
+      revalidate: 10,
+    };
+  } catch (error) {
+    return {
+      props: {
+        products: [],
+      },
+      revalidate: 10,
+    };
+  }
 }
