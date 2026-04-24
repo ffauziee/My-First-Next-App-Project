@@ -1,45 +1,147 @@
 .navbar {
   width: 100%;
-  min-height: 60px;
-  background-color: #4caf50;
-  color: white;
+  height: 64px;
+  background: #1b4332;
+  color: #fff;
   display: flex;
   align-items: center;
-  padding: 0 20px;
-  position: relative;
+  justify-content: space-between;
+  padding: 0 32px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+/* Left */
 .navbarLeft {
   display: flex;
   align-items: center;
-  position: absolute;
-  left: 20px;
 }
 
 .homeButton {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
   text-decoration: none;
-  padding: 8px 12px;
-  border-radius: 4px;
-  transition: transform 0.3s ease;
+  color: inherit;
+  transition: background 0.2s;
 }
 
 .homeButton:hover {
-  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.1);
 }
 
+.homeButton img {
+  display: block;
+  width: 24px;
+  height: 24px;
+  opacity: 0.9;
+}
+
+/* Center */
 .navbarCenter {
-  flex: 1;
-  display: flex;
-  justify-content: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   text-align: center;
+  pointer-events: none;
 }
 
 .navbarCenter h1 {
-  font-size: 1.5rem;
+  font-size: 1.05rem;
   font-weight: 600;
   margin: 0;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  color: rgba(255, 255, 255, 0.92);
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+}
+
+/* Right */
+.navbarRight {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Buttons shared */
+.buttonSignIn {
+  height: 36px;
+  padding: 0 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 15px;
+  cursor: pointer;
+  font-family: inherit;
+  letter-spacing: 0.2px;
+  border: none;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+/* Sign In — hijau muda, kontras di atas navbar gelap */
+.buttonSignIn {
+  background: #52b788;
+  color: #fff;
+}
+
+.buttonSignIn:hover {
+  background: #40916c;
+}
+
+/* Sign Out */
+.buttonSignOut {
+  height: 36px;
+  padding: 0 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 15px;
+  cursor: pointer;
+  font-family: inherit;
+  letter-spacing: 0.2px;
+  border: none;
+  background: #dc3545;
+  color: white;
+  transition: background 0.2s;
+}
+
+.buttonSignOut:hover {
+  background: #b52a37;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 16px;
+    height: 56px;
+  }
+
+  .navbarCenter h1 {
+    font-size: 0.85rem;
+  }
+
+  .buttonSignIn,
+  .buttonSignOut {
+    height: 32px;
+    padding: 0 14px;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbarCenter {
+    position: static;
+    transform: none;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .navbarCenter h1 {
+    font-size: 0.72rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
