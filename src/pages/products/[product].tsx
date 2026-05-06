@@ -18,7 +18,7 @@ export async function getServerSideProps({
   const response = await res.json();
 
   return {
-    props: {
+    props: {  
       product: response.data || null,
     },
   };
