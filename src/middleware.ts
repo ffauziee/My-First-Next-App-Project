@@ -6,8 +6,8 @@ function mainMiddleware(request: NextRequest) {
   return NextResponse.next();
 }
 
-export default withAuth(mainMiddleware, ["/profile"]);
+export default withAuth(mainMiddleware, ["/profile", "/admin"]);
 
 export const config = {
-  matcher: ["/profile", "/products", "/about", "/products/:path*"],
+  matcher: ["/profile", "/admin", "/products", "/about", "/products/:path*"],
 };
